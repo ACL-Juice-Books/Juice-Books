@@ -4,8 +4,8 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('book routes', () => {
-  beforeEach(async () => {
-    return await setup(pool);
+  beforeEach(() => {
+    return setup(pool);
   });
 
   afterAll(() => {

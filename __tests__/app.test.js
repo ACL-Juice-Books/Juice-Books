@@ -4,8 +4,8 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('backend routes', () => {
-  beforeEach(async () => {
-    return await setup(pool);
+  beforeEach(() => {
+    return setup(pool);
   });
 
   afterAll(() => {

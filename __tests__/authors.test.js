@@ -5,8 +5,8 @@ const app = require('../lib/app');
 const Author = require('../lib/models/Author.js');
 
 describe('backend routes', () => {
-  beforeEach(async () => {
-    return await setup(pool);
+  beforeEach(() => {
+    return setup(pool);
   });
 
   afterAll(() => {

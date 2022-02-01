@@ -5,8 +5,8 @@ const app = require('../lib/app');
 const Publisher = require('../lib/models/Publisher.js');
 
 describe('backend routes', () => {
-  beforeEach(async () => {
-    return await setup(pool);
+  beforeEach(() => {
+    return setup(pool);
   });
 
   afterAll(() => {
