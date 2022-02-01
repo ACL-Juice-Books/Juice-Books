@@ -50,4 +50,12 @@ describe('reviewer routes', () => {
     const expected = { ...mockReviewer, id, name: 'new-test-reviewer-name' };
     expect(actual.body).toEqual(expected);
   });
+
+  it('it should delete an existing reviewer, getbyid should throw error', async () => {
+    const { id } = await Reviewer.insert(mockReviewer);
+    const actual = await request(app).delete(`/api/v1/reviewers/${id}`);
+    const expected = { ...mockReviewer, id };
+    expect(actual.body).toEqual(expected);
+    expect(await Reviewer.getById(id)).rejects.toThrow();
+  });
 });
