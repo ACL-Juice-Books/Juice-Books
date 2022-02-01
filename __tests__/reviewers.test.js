@@ -17,7 +17,15 @@ describe('backend routes', () => {
     pool.end();
   });
 
-  it('it should post a new reviewer and return an object in the correct shape', async () => {
+  it('it should post new reviewer and return an object in the correct shape', async () => {
+    const actual = await request(app)
+      .post('/api/v1/reviewers/')
+      .send(mockReviewer);
+    const expected = { ...mockReviewer, id: expect.any(String) };
+    expect(actual.body).toEqual(expected);
+  });
+
+  it('it should insert a new reviewer and get an array with an object in the correct shape', async () => {
     const actual = await request(app)
       .post('/api/v1/reviewers/')
       .send(mockReviewer);
