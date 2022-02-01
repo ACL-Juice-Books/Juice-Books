@@ -24,7 +24,7 @@ CREATE TABLE  publishers (
 CREATE TABLE book (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title TEXT NOT NULL,
-  publishers BIGINT,
+  publisher BIGINT,
   released INT NOT NULL,
   FOREIGN KEY(publisher) REFERENCES publishers(id)
 );
