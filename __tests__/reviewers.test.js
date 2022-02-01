@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Reviewer = require('../lib/models/Reviewer.js');
 
 const mockReviewer = {
   name: 'test-reviewer-name',
@@ -26,10 +27,9 @@ describe('backend routes', () => {
   });
 
   it('it should insert a new reviewer and get an array with an object in the correct shape', async () => {
-    const actual = await request(app)
-      .post('/api/v1/reviewers/')
-      .send(mockReviewer);
-    const expected = { ...mockReviewer, id: expect.any(String) };
+    await Reviewer.insert(mockReviewer);
+    const actual = await request(app).get('/');
+    const expected = [{ ...mockReviewer, id: expect.any(String) }];
     expect(actual.body).toEqual(expected);
   });
 });
