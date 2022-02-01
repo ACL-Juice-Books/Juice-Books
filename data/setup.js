@@ -1,9 +1,9 @@
 const fs = require('fs').promises;
 
 module.exports = (pool) => {
-  return fs.readdir(`${__dirname}/../sql`)
-    .then(files => Promise.all(files.map(file => fs.readFile(`${__dirname}/../sql/${file}`, { encoding: 'utf-8' }))))
-    .then(queries => Promise.all(queries.map(query => pool.query(query))))
+  return fs
+    .readFile(`${__dirname}/../sql/setup.sql`, { encoding: 'utf-8' })
+    .then((sql) => pool.query(sql))
     .then(() => console.log('✅ Database setup complete!'))
     .catch((error) => {
       const dbNotFound = error.message.match(/database "(.+)" does not exist/i);
