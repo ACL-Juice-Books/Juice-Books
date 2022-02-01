@@ -28,7 +28,7 @@ describe('backend routes', () => {
 
   it('it should insert a new reviewer and get an array with an object in the correct shape', async () => {
     await Reviewer.insert(mockReviewer);
-    const actual = await request(app).get('/');
+    const actual = await request(app).get('/api/v1/reviewers/');
     const expected = [{ ...mockReviewer, id: expect.any(String) }];
     expect(actual.body).toEqual(expected);
   });
