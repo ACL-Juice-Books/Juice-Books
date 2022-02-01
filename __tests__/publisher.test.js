@@ -29,12 +29,23 @@ describe('backend routes', () => {
   });
 
   it('should get an publisher by id', async () => {
-    const publisher = await Publisher.insert({
-      name: 'Penguin',
-      city: 'Seattle',
-      country: 'USA',
-    });
-    const res = await request(app).get('/api/v1/publishers/2');
+    const publisher = {
+      id: '1',
+      name: 'bob',
+      city: null,
+      country: null,
+      books: [
+        {
+          id: '1',
+          title: 'Harry Potter',
+        },
+        {
+          id: '2',
+          title: 'Harry Potter 2',
+        },
+      ],
+    };
+    const res = await request(app).get('/api/v1/publishers/1');
     expect(res.body).toEqual(publisher);
   });
 
