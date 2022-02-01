@@ -4,11 +4,16 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('backend routes', () => {
-  beforeEach(() => {
-    return setup(pool);
+  beforeEach(async () => {
+    return await setup(pool);
   });
 
   afterAll(() => {
     pool.end();
+  });
+
+  it('should not have a root route', async () => {
+    const res = await request(app).get('/');
+    expect(res.status).toEqual(404);
   });
 });

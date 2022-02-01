@@ -4,8 +4,8 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('book routes', () => {
-  beforeEach(() => {
-    return setup(pool);
+  beforeEach(async () => {
+    return await setup(pool);
   });
 
   afterAll(() => {
@@ -14,15 +14,15 @@ describe('book routes', () => {
 
   const seedData = [
     {
-      id: 1,
+      id: '1',
       title: 'Harry Potter',
-      publisher: 1,
+      publisher: '1',
       released: 1998
     },
     {
-      id: 2,
+      id: '2',
       title: 'Harry Potter 2',
-      publisher: 1,
+      publisher: '1',
       released: 1999
     }
   ];
@@ -40,15 +40,15 @@ describe('book routes', () => {
   it('should post a book', async () => {
     const book = {
       title: 'Harry Potter',
-      publisher: 1,
+      publisher: '1',
       released: 1998
     };
 
     const { body } = await request(app)
-      .post('/api/v1/books/1')
+      .post('/api/v1/books')
       .send(book);
 
-    book.id = 3;
+    book.id = '3';
 
     expect(body).toEqual(book);
   });
