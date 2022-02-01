@@ -20,6 +20,7 @@ CREATE TABLE  publishers (
   country TEXT
 );
 
+INSERT INTO publishers (name) VALUES ('bob');
 
 CREATE TABLE book (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

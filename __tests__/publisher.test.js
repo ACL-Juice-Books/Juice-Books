@@ -34,7 +34,7 @@ describe('backend routes', () => {
       city: 'Seattle',
       country: 'USA',
     });
-    const res = await request(app).get('/api/v1/publishers/1');
+    const res = await request(app).get('/api/v1/publishers/2');
     expect(res.body).toEqual(publisher);
   });
 
@@ -50,7 +50,7 @@ describe('backend routes', () => {
       country: 'USA',
     });
     const res = await request(app).get('/api/v1/publishers');
-    expect(res.body).toEqual([publisher, publisher2]);
+    expect(res.body).toEqual(expect.arrayContaining([publisher, publisher2]));
   });
 
   it('should delete a publisher by id', async () => {
