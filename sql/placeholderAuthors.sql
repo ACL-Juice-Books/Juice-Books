@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS publisher;
+
+CREATE TABLE publisher (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT
+);
+
+INSERT INTO publisher (name) VALUES ('bob');
