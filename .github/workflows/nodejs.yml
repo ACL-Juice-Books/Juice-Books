@@ -14,7 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm ci
-    - run: npm run setup-db
     - run: npm test
       env:
         CI: true
