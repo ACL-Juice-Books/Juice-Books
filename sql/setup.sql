@@ -41,10 +41,10 @@ CREATE TABLE books_authors(
   book_id BIGINT NOT NULL,
   FOREIGN KEY(author_id) REFERENCES authors(id), 
   FOREIGN KEY(book_id) REFERENCES book(id)
-)
+);
 
 CREATE TABLE reviewers(
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name TEXT NEVER NULL,
-  company TEXT NEVER NULL
-)
+  name TEXT NOT NULL,
+  company TEXT NOT NULL
+);
