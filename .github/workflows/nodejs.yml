@@ -13,8 +13,8 @@ jobs:
           POSTGRES_PASSWORD: alchemy
     steps:
     - uses: actions/checkout@v2
-    - run: npm run setup-db
     - run: npm ci
+    - run: npm run setup-db
     - run: npm test
       env:
         CI: true
