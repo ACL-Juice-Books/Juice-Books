@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS authors CASCADE;
 DROP TABLE IF EXISTS book CASCADE;
 DROP TABLE IF EXISTS publishers CASCADE;
+DROP TABLE IF EXISTS books_authors CASCADE;
 
 CREATE TABLE authors (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -32,3 +33,11 @@ CREATE TABLE book (
 
 INSERT INTO book (title, publisher, released) VALUES ('Harry Potter', 1, 1998);
 INSERT INTO book (title, publisher, released) VALUES ('Harry Potter 2', 1, 1999);
+
+CREATE TABLE books_authors(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  author_id BIGINT NOT NULL,  
+  book_id BIGINT NOT NULL,
+  FOREIGN KEY(author_id) REFERENCES authors(id), 
+  FOREIGN KEY(book_id) REFERENCES book(id)
+)
