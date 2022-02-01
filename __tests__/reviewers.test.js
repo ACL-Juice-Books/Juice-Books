@@ -56,6 +56,6 @@ describe('reviewer routes', () => {
     const actual = await request(app).delete(`/api/v1/reviewers/${id}`);
     const expected = { ...mockReviewer, id };
     expect(actual.body).toEqual(expected);
-    expect(await Reviewer.getById(id)).rejects.toThrow();
+    expect(async () => await Reviewer.getById(id)).rejects.toThrow();
   });
 });
