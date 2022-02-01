@@ -9,7 +9,7 @@ const mockReviewer = {
   company: 'test-company-name',
 };
 
-describe('backend routes', () => {
+describe('reviewer routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -40,4 +40,13 @@ describe('backend routes', () => {
   //     const expected = { ...mockReviewer, id, reviews: [mockReviewer] };
   //     expect(actual.body).toEqual(expected);
   //   });
+
+  it('it should update an existing reviewer and return with an object in the correct shape', async () => {
+    const { id } = await Reviewer.insert(mockReviewer);
+    const actual = await request(app)
+      .update(`/api/v1/reviewers/${id}`)
+      .send({ name: 'new-test-reviewer-name' });
+    const expected = { ...mockReviewer, id, name: 'new-test-reviewer-name' };
+    expect(actual.body).toEqual(expected);
+  });
 });
