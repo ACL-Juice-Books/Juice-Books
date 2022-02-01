@@ -12,7 +12,7 @@ describe('book routes', () => {
     pool.end();
   });
 
-  it('should get a book', async () => {
-    request()
+  it.skip('should get a book', async () => {
+    request();
   });
 });
