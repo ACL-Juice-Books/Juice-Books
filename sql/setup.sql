@@ -12,6 +12,7 @@ CREATE TABLE authors (
   place_of_birth TEXT NOT NULL
 );
 
+INSERT INTO authors (name, date_of_birth, place_of_birth) VALUES ('Nicholas Eames', '11/10/2020', 'USA');
 
 CREATE TABLE  publishers (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

@@ -29,16 +29,33 @@ describe('backend routes', () => {
   });
 
   it('should get an author by id', async () => {
-    const author = await Author.insert({
-      name: 'Stephen King',
-      dateOfBirth: '09/21/1947', //prettier-ignore
-      placeOfBirth: 'Maine',
-    });
+    const author = {
+      id: '1',
+      name: 'Nicholas Eames',
+      dateOfBirth: '11/10/2020', //prettier-ignore
+      placeOfBirth: 'USA',
+      books: [
+        {
+          id: '1',
+          title: 'Harry Potter',
+        },
+        {
+          id: '2',
+          title: 'Harry Potter 2',
+        },
+      ],
+    };
     const res = await request(app).get('/api/v1/authors/1');
     expect(res.body).toEqual(author);
   });
 
-  it('should list all of the books', async () => {
+  it('should list all of the authors', async () => {
+    const author1 = {
+      id: '1',
+      name: 'Nicholas Eames',
+      dateOfBirth: '11/10/2020', //prettier-ignore
+      placeOfBirth: 'USA',
+    };
     const author4 = await Author.insert({
       name: 'Frank Herbert',
       dateOfBirth: '10/08/1920', //prettier-ignore
@@ -50,6 +67,6 @@ describe('backend routes', () => {
       placeOfBirth: 'Georgia',
     });
     const res = await request(app).get('/api/v1/authors');
-    expect(res.body).toEqual([author4, author5]);
+    expect(res.body).toEqual([author1, author4, author5]);
   });
 });
