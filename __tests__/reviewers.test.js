@@ -33,13 +33,14 @@ describe('reviewer routes', () => {
     expect(actual.body).toEqual(expected);
   });
 
-  //   it('it should getbyid an object in the correct shape', async () => {
-  //     const { id } = await Reviewer.insert(mockReviewer);
-  //     // await Review.insert(mockReview);
-  //     const actual = await request(app).get(`/api/v1/reviewers/${id}`);
-  //     const expected = { ...mockReviewer, id, reviews: [mockReviewer] };
-  //     expect(actual.body).toEqual(expected);
-  //   });
+  it('it should getbyid an object in the correct shape', async () => {
+    const { id } = await Reviewer.insert(mockReviewer);
+    // await Review.insert(mockReview);
+    const actual = await request(app).get(`/api/v1/reviewers/${id}`);
+    // const expected = { ...mockReviewer, id, reviews: [mockReviewer] };
+    const expected = { ...mockReviewer, id };
+    expect(actual.body).toEqual(expected);
+  });
 
   it('it should update an existing reviewer and return with an object in the correct shape', async () => {
     const { id } = await Reviewer.insert(mockReviewer);
