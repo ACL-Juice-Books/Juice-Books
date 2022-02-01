@@ -26,10 +26,18 @@ describe('backend routes', () => {
     expect(actual.body).toEqual(expected);
   });
 
-  it('it should insert a new reviewer and get an array with an object in the correct shape', async () => {
+  it('it should get an array with an object in the correct shape', async () => {
     await Reviewer.insert(mockReviewer);
     const actual = await request(app).get('/api/v1/reviewers/');
     const expected = [{ ...mockReviewer, id: expect.any(String) }];
     expect(actual.body).toEqual(expected);
   });
+
+  //   it('it should getbyid an object in the correct shape', async () => {
+  //     const { id } = await Reviewer.insert(mockReviewer);
+  //     // await Review.insert(mockReview);
+  //     const actual = await request(app).get(`/api/v1/reviewers/${id}`);
+  //     const expected = { ...mockReviewer, id, reviews: [mockReviewer] };
+  //     expect(actual.body).toEqual(expected);
+  //   });
 });
