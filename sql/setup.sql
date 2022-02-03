@@ -34,8 +34,7 @@ CREATE TABLE book (
   FOREIGN KEY(publisher) REFERENCES publishers(id)
 );
 
-INSERT INTO book (title, publisher, released) VALUES ('Harry Potter', 1, 1998);
-INSERT INTO book (title, publisher, released) VALUES ('Harry Potter 2', 1, 1999);
+INSERT INTO book (title, publisher, released) VALUES ('Harry Potter', 1, 1998), ('Harry Potter 2', 1, 1999);
 
 CREATE TABLE books_authors(
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
