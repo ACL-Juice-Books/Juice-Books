@@ -40,19 +40,19 @@ describe('book routes', () => {
       title: 'Harry Potter',
       released: 1998,
       publisher: {
-        id: '1',
+        id: 1,
         name: 'bob'
       },
       authors: [{
-        id: '1',
+        id: 1,
         name: 'Nicholas Eames'
       }],
       reviews: [{
-        id: '1',
-        rating: 5,
+        id: 1,
+        rating: 1,
         review: 'is good',
         reviewer: {
-          id: '1',
+          id: 1,
           name: 'definitely not bob'
         }
       }]
