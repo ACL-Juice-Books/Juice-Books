@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS authors CASCADE;
 DROP TABLE IF EXISTS book CASCADE;
 DROP TABLE IF EXISTS publishers CASCADE;
 DROP TABLE IF EXISTS books_authors CASCADE;
+DROP TABLE IF EXISTS reviewers CASCADE;
+DROP TABLE IF EXISTS review CASCADE;
 
 CREATE TABLE authors (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -44,3 +46,21 @@ CREATE TABLE books_authors(
 );
 
 INSERT INTO books_authors (author_id, book_id) VALUES (1, 1);
+
+CREATE TABLE reviewers(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  company TEXT NOT NULL
+);
+
+INSERT INTO reviewers (name, company) VALUES ('definitely not bob', 'not bobs books');
+
+CREATE TABLE review(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  rating INT CHECK (rating >= 0 AND rating <= 5) NOT NULL,
+  reviewer_id BIGINT REFERENCES reviewers(id) NOT NULL,
+  review VARCHAR(140) NOT NULL,
+  book_id BIGINT REFERENCES book(id) NOT NULL
+);
+
+INSERT INTO review (rating, reviewer_id, review, book_id) VALUES (1, '1', 'is good', '1');
