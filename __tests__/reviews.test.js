@@ -75,9 +75,14 @@ describe('reviewer routes', () => {
 
     const reviewsResult = await request(app).get('/api/v1/reviews');
 
+    review.book = { id: '1', title: 'Harry Potter' };
     review.id = expect.any(String);
+
     const expected = new Array(97).fill(review, 0, 97);
+
+    review2.book = { id: '1', title: 'Harry Potter' };
     review2.id = expect.any(String);
+
     expected.push(review2);
     expected.push(review2);
     expected.push(review2);
