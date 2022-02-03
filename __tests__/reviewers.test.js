@@ -3,10 +3,18 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Reviewer = require('../lib/models/Reviewer.js');
+const Review = require('../lib/models/Review.js');
 
 const mockReviewer = {
   name: 'test-reviewer-name',
   company: 'test-company-name',
+};
+
+const mockReview = {
+  rating: 2,
+  reviewer_id: '1',
+  review: 'is really good',
+  book_id: '1',
 };
 
 describe('reviewer routes', () => {
@@ -35,10 +43,14 @@ describe('reviewer routes', () => {
 
   it('it should getbyid an object in the correct shape', async () => {
     const { id } = await Reviewer.insert(mockReviewer);
-    // await Review.insert(mockReview);
+    await Review.insert({ ...mockReview, reviewer_id: id });
     const actual = await request(app).get(`/api/v1/reviewers/${id}`);
-    // const expected = { ...mockReviewer, id, reviews: [mockReviewer] };
-    const expected = { ...mockReviewer, id };
+    const expected = {
+      ...mockReviewer,
+      id,
+      reviews: [{ ...mockReview, reviewer_id: id }],
+    };
+    // const expected = { ...mockReviewer, id };
     expect(actual.body).toEqual(expected);
   });
 
