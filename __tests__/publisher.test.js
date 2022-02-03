@@ -36,11 +36,11 @@ describe('backend routes', () => {
       country: null,
       books: [
         {
-          id: '1',
+          id: 1,
           title: 'Harry Potter',
         },
         {
-          id: '2',
+          id: 2,
           title: 'Harry Potter 2',
         },
       ],

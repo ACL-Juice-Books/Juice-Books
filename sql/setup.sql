@@ -45,7 +45,7 @@ CREATE TABLE books_authors(
   FOREIGN KEY(book_id) REFERENCES book(id)
 );
 
-INSERT INTO books_authors (author_id, book_id) VALUES (1, 1);
+INSERT INTO books_authors (author_id, book_id) VALUES (1, 1), (1, 2);
 
 CREATE TABLE reviewers(
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
