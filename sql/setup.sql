@@ -14,7 +14,7 @@ CREATE TABLE authors (
 
 INSERT INTO authors (name, date_of_birth, place_of_birth) VALUES ('Nicholas Eames', '11/10/2020', 'USA');
 
-CREATE TABLE  publishers (
+CREATE TABLE publishers (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name TEXT NOT NULL,
   city TEXT,
@@ -41,4 +41,6 @@ CREATE TABLE books_authors(
   book_id BIGINT NOT NULL,
   FOREIGN KEY(author_id) REFERENCES authors(id), 
   FOREIGN KEY(book_id) REFERENCES book(id)
-)
+);
+
+INSERT INTO books_authors (author_id, book_id) VALUES (1, 1);

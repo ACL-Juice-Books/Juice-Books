@@ -34,7 +34,31 @@ describe('book routes', () => {
 
   it('should get a book', async () => {
     const { body } = await request(app).get('/api/v1/books/1');
-    expect(body).toEqual(seedData[0]);
+
+    const expected = {
+      id: '1',
+      title: 'Harry Potter',
+      released: 1998,
+      publisher: {
+        id: '1',
+        name: 'bob'
+      },
+      authors: [{
+        id: '1',
+        name: 'Nicholas Eames'
+      }],
+      reviews: [{
+        id: '1',
+        rating: 5,
+        review: 'is good',
+        reviewer: {
+          id: '1',
+          name: 'definitely not bob'
+        }
+      }]
+    };
+
+    expect(body).toEqual(expected);
   });
 
   it('should post a book', async () => {
