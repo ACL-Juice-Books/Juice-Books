@@ -24,7 +24,7 @@ describe('reviewer routes', () => {
       .send(review);
 
     review.id = '2';
-    expect(actual).toEqual(review);
+    expect(actual.body).toEqual(review);
   });
 
   it('can delete a review', async () => {
@@ -40,7 +40,7 @@ describe('reviewer routes', () => {
 
     const postedReview = postResult.body;
 
-    await request(app).post(`/api/v1/reviews/${postedReview.id}`);
+    await request(app).delete(`/api/v1/reviews/${postedReview.id}`);
 
     const reviewsResult = await request(app).get('/api/v1/reviews');
     const reviews = reviewsResult.body;
