@@ -87,8 +87,11 @@ describe('reviewer routes', () => {
 
   it('it should attempt to delete a reviewer with reviews and return an error', async () => {
     const { id } = await Reviewer.insert(mockReviewer);
-    await Review.insert(mockReview);
+    await Review.insert({ ...mockReview, reviewer_id: id });
     const deleteResponse = await request(app).delete(`/api/v1/reviewers/${id}`);
-    expect(deleteResponse.body).toEqual('no');
+    expect(deleteResponse.body.status).toEqual(500);
+    expect(deleteResponse.body.message).toEqual(
+      'update or delete on table "reviewers" violates foreign key constraint "review_reviewer_id_fkey" on table "review"'
+    );
   });
 });
