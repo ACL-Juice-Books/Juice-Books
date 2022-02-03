@@ -84,9 +84,11 @@ describe('reviewer routes', () => {
     expect(actual.body).toEqual(expected);
     expect(async () => await Reviewer.getById(id)).rejects.toThrow();
   });
-  //   it('it should attempt to delete a reviewer with reviews and return an error', async () => {
-  //     const { id } = await Reviewer.insert(mockReviewer);
-  //     // await Review.insert(mockReview);
-  //     expect(async () => await request(app).delete(`/api/v1/reviewers/${id}`)).rejects.toThrow();
-  //   });
+
+  it('it should attempt to delete a reviewer with reviews and return an error', async () => {
+    const { id } = await Reviewer.insert(mockReviewer);
+    await Review.insert(mockReview);
+    const deleteResponse = await request(app).delete(`/api/v1/reviewers/${id}`);
+    expect(deleteResponse.body).toEqual('no');
+  });
 });
