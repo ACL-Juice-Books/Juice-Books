@@ -17,14 +17,14 @@ describe('book routes', () => {
       id: '1',
       title: 'Harry Potter',
       publisher: '1',
-      released: 1998
+      released: 1998,
     },
     {
       id: '2',
       title: 'Harry Potter 2',
       publisher: '1',
-      released: 1999
-    }
+      released: 1999,
+    },
   ];
 
   it('should get all books', async () => {
@@ -41,21 +41,25 @@ describe('book routes', () => {
       released: 1998,
       publisher: {
         id: 1,
-        name: 'bob'
+        name: 'bob',
       },
-      authors: [{
-        id: 1,
-        name: 'Nicholas Eames'
-      }],
-      reviews: [{
-        id: 1,
-        rating: 1,
-        review: 'is good',
-        reviewer: {
+      authors: [
+        {
           id: 1,
-          name: 'definitely not bob'
-        }
-      }]
+          name: 'Nicholas Eames',
+        },
+      ],
+      reviews: [
+        {
+          id: 1,
+          rating: 1,
+          review: 'is good',
+          reviewer: {
+            id: 1,
+            name: 'definitely not bob',
+          },
+        },
+      ],
     };
 
     expect(body).toEqual(expected);
@@ -65,12 +69,10 @@ describe('book routes', () => {
     const book = {
       title: 'Harry Potter',
       publisher: '1',
-      released: 1998
+      released: 1998,
     };
 
-    const { body } = await request(app)
-      .post('/api/v1/books')
-      .send(book);
+    const { body } = await request(app).post('/api/v1/books').send(book);
 
     book.id = '3';
 

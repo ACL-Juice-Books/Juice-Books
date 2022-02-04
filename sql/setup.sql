@@ -58,9 +58,10 @@ INSERT INTO reviewers (name, company) VALUES ('definitely not bob', 'not bobs bo
 CREATE TABLE review(
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   rating INT CHECK (rating >= 0 AND rating <= 5) NOT NULL,
-  reviewer_id BIGINT REFERENCES reviewers(id) NOT NULL,
+  reviewer_id BIGINT NOT NULL,
   review VARCHAR(140) NOT NULL,
-  book_id BIGINT REFERENCES book(id) NOT NULL
+  book_id BIGINT REFERENCES book(id) NOT NULL,
+  FOREIGN KEY(reviewer_id) REFERENCES reviewers(id)
 );
 
 INSERT INTO review (rating, reviewer_id, review, book_id) VALUES (1, '1', 'is good', '1');
