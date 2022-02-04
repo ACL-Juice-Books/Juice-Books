@@ -3,6 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Author = require('../lib/models/Author.js');
+const Book = require('../lib/models/Book.js');
 
 describe('backend routes', () => {
   beforeEach(() => {
@@ -36,12 +37,14 @@ describe('backend routes', () => {
       placeOfBirth: 'USA',
       books: [
         {
-          id: '1',
+          id: 1,
           title: 'Harry Potter',
+          released: 1998,
         },
         {
-          id: '2',
+          id: 2,
           title: 'Harry Potter 2',
+          released: 1999,
         },
       ],
     };
@@ -53,8 +56,6 @@ describe('backend routes', () => {
     const author1 = {
       id: '1',
       name: 'Nicholas Eames',
-      dateOfBirth: '11/10/2020', //prettier-ignore
-      placeOfBirth: 'USA',
     };
     const author4 = await Author.insert({
       name: 'Frank Herbert',
@@ -67,6 +68,10 @@ describe('backend routes', () => {
       placeOfBirth: 'Georgia',
     });
     const res = await request(app).get('/api/v1/authors');
-    expect(res.body).toEqual([author1, author4, author5]);
+    expect(res.body).toEqual([
+      author1,
+      { id: author4.id, name: author4.name },
+      { id: author5.id, name: author5.name },
+    ]);
   });
 });
